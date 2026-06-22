@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenSource AI Hub - Discover the Best AI Models</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">AI Hub</a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="#category-section">Categories</a>
+                    <a href="#trending-section">Trending</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Discover Open-Source AI</h1>
+                <p>Explore the latest and most powerful open-source AI models in one place.</p>
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="model-search" placeholder="Search models, developers, or categories...">
+                </div>
+            </div>
+        </section>
+
+        <section id="category-section" class="container">
+            <div class="section-header">
+                <h2>Browse by Category</h2>
+            </div>
+            <div id="category-grid" class="category-grid">
+                <!-- Categories will be injected here -->
+            </div>
+        </section>
+
+        <section id="trending-section" class="container">
+            <div class="section-header">
+                <h2>Trending Models</h2>
+            </div>
+            <div id="trending-grid" class="model-grid">
+                <!-- Trending models will be injected here -->
+            </div>
+        </section>
+
+        <section id="recent-section" class="container">
+            <div class="section-header">
+                <h2>Recently Added</h2>
+            </div>
+            <div id="recent-grid" class="model-grid">
+                <!-- Recent models will be injected here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 OpenSource AI Hub. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 0.8rem;">Powered by open-source innovation.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/models_data.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
