@@ -20,6 +20,38 @@
     box-sizing: border-box;
 }
 
+/* ── Page Transition ─────────────────────────────────── */
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pageExit {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-14px);
+    }
+}
+
+body {
+    animation: pageEnter 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+body.page-exit {
+    animation: pageExit 0.22s ease-in forwards;
+    pointer-events: none;
+}
+
 body {
     font-family: var(--font-sans);
     background-color: var(--bg-color);
@@ -146,12 +178,14 @@ section {
     border-radius: 12px;
     text-align: center;
     border: 1px solid var(--border-color);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
 }
 
 .category-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow);
+    transform: translateY(-7px) scale(1.02);
+    box-shadow: 0 12px 28px -6px rgb(37 99 235 / 0.18);
     border-color: var(--primary-color);
 }
 
@@ -175,11 +209,15 @@ section {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    transition: box-shadow 0.2s;
+    transition: box-shadow 0.3s ease,
+                transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 0.3s ease;
 }
 
 .model-card:hover {
-    box-shadow: var(--shadow);
+    box-shadow: 0 10px 24px -4px rgb(0 0 0 / 0.12);
+    transform: translateY(-4px);
+    border-color: var(--primary-color);
 }
 
 .model-badge {
@@ -225,6 +263,14 @@ section {
     border-radius: 6px;
     font-size: 0.875rem;
     font-weight: 500;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-block;
+}
+
+.btn-view:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgb(37 99 235 / 0.35);
 }
 
 /* Footer */

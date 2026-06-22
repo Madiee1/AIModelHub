@@ -1,9 +1,29 @@
+/* ── Smooth page navigation ───────────────────────────── */
+function navigateWithTransition(href) {
+    document.body.classList.add('page-exit');
+    setTimeout(() => { window.location.href = href; }, 220);
+}
+
+function setupSmoothLinks() {
+    document.querySelectorAll('a[href]').forEach(link => {
+        const href = link.getAttribute('href');
+        // Only intercept internal links (not external, not anchors, not mailto etc.)
+        if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto')) return;
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            navigateWithTransition(link.href);
+        });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     renderCategories();
     renderTrending();
     renderRecentlyAdded();
     setupSearch();
+    setupSmoothLinks(); // run after all cards are rendered
 });
+
 
 function renderCategories() {
     const grid = document.getElementById('category-grid');

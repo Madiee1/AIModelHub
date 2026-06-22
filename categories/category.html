@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,20 +9,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <div class="container">
             <nav>
-                <a href="../index.html" class="logo">AI Hub</a>
+                <a href="../index.html" class="logo" id="nav-logo">AI Hub</a>
                 <div class="nav-links">
-                    <a href="../index.html">Home</a>
-                    <a href="../index.html#category-section">Categories</a>
+                    <a href="../index.html" id="nav-home"><i class="fa-solid fa-house"></i> Home</a>
                 </div>
             </nav>
         </div>
     </header>
 
     <main class="container" style="padding-top: 40px;">
+        <button id="back-btn" style="
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-bottom: 24px;
+            transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        ">
+            <i class="fa-solid fa-arrow-left"></i> Back
+        </button>
+
         <div id="category-info" style="margin-bottom: 40px;">
             <h1 id="category-title" style="font-size: 2.5rem; margin-bottom: 0.5rem;">Category Name</h1>
             <p id="category-desc" style="color: var(--text-muted); font-size: 1.1rem;">Category description goes here.</p>
@@ -40,30 +58,66 @@
 
     <script src="../assets/js/models_data.js"></script>
     <script>
+        /* ── Smooth navigation helper ─────────────────── */
+        function navigateWithTransition(href) {
+            document.body.classList.add('page-exit');
+            setTimeout(() => { window.location.href = href; }, 220);
+        }
+
+        function goBack() {
+            if (document.referrer && document.referrer !== window.location.href) {
+                document.body.classList.add('page-exit');
+                setTimeout(() => { history.back(); }, 220);
+            } else {
+                navigateWithTransition('../index.html');
+            }
+        }
+
+        /* ── Intercept internal nav links ─────────────── */
+        function setupSmoothLinks() {
+            document.querySelectorAll('a[href]').forEach(link => {
+                const href = link.getAttribute('href');
+                if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto')) return;
+                link.addEventListener('click', e => {
+                    e.preventDefault();
+                    navigateWithTransition(link.href);
+                });
+            });
+        }
+
+        /* ── Back button hover effect ─────────────────── */
+        const backBtn = document.getElementById('back-btn');
+        backBtn.addEventListener('mouseenter', () => {
+            backBtn.style.color = 'var(--primary-color)';
+            backBtn.style.borderColor = 'var(--primary-color)';
+            backBtn.style.transform = 'translateX(-3px)';
+        });
+        backBtn.addEventListener('mouseleave', () => {
+            backBtn.style.color = 'var(--text-muted)';
+            backBtn.style.borderColor = 'var(--border-color)';
+            backBtn.style.transform = 'translateX(0)';
+        });
+        backBtn.addEventListener('click', goBack);
+
+        /* ── Page content ─────────────────────────────── */
         document.addEventListener('DOMContentLoaded', () => {
+            setupSmoothLinks();
+
             const urlParams = new URLSearchParams(window.location.search);
             const catId = urlParams.get('id');
-            
-            if (!catId) {
-                window.location.href = '../index.html';
-                return;
-            }
+
+            if (!catId) { window.location.href = '../index.html'; return; }
 
             const category = modelsData.categories.find(c => c.id === catId);
-            if (!category) {
-                window.location.href = '../index.html';
-                return;
-            }
+            if (!category) { window.location.href = '../index.html'; return; }
 
-            // Update Page Info
             document.title = `${category.name} - OpenSource AI Hub`;
             document.getElementById('category-title').textContent = category.name;
             document.getElementById('category-desc').textContent = category.description;
 
-            // Render Models
             const grid = document.getElementById('category-models-grid');
             const models = modelsData.models.filter(m => m.category === catId);
-            
+
             if (models.length > 0) {
                 grid.innerHTML = models.map(model => `
                     <div class="model-card">
@@ -84,4 +138,5 @@
         });
     </script>
 </body>
+
 </html>
