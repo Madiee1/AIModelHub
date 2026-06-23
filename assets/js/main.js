@@ -150,24 +150,33 @@ function setupSearch() {
     const searchInput = document.getElementById('model-search');
     if (!searchInput) return;
 
-    // Use the first trending row as the search results container
-    const searchRow = document.getElementById('trending-row-1');
-    let searchGrid = document.getElementById('trending-grid-1');
+    const searchSection  = document.getElementById('search-results-section');
+    const searchLabel    = document.getElementById('search-results-label');
+    const searchGrid     = document.getElementById('search-results-grid');
+
+    const otherSections = [
+        document.getElementById('category-section'),
+        document.getElementById('trending-section'),
+        document.getElementById('recently-added-section'),
+    ].filter(Boolean);
+
+    function showSearch() {
+        otherSections.forEach(s => s.style.display = 'none');
+        searchSection.style.display = 'block';
+    }
+
+    function hideSearch() {
+        searchSection.style.display = 'none';
+        otherSections.forEach(s => s.style.display = 'block');
+        // Restore carousel card widths after sections are visible again
+        adjustCarouselCardWidths();
+    }
 
     searchInput.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase();
+        const query = e.target.value.trim().toLowerCase();
+
         if (query.length < 2) {
-            // Reset: re-render and show all sections
-            renderTrending();
-            renderRecentlyAdded();
-            document.querySelectorAll('section').forEach(s => s.style.display = 'block');
-            // Restore row 2 visibility
-            const row2Trending = document.querySelector('#trending-section .carousel-row:last-of-type');
-            const row2Recent   = document.querySelector('#recently-added-section .carousel-row:last-of-type');
-            if (row2Trending) row2Trending.style.display = '';
-            if (row2Recent)   row2Recent.style.display   = '';
-            // Restore label
-            document.querySelector('#trending-section h2').textContent = 'Trending Models';
+            hideSearch();
             return;
         }
 
@@ -177,28 +186,14 @@ function setupSearch() {
             m.developer.toLowerCase().includes(query)
         );
 
-        // Hide irrelevant sections
-        document.getElementById('category-section').style.display = 'none';
-        document.getElementById('recently-added-section').style.display = 'none';
-
-        // Hide row 2 of trending (use row 1 as flat search results)
-        const row2Trending = document.querySelector('#trending-section .carousel-row:last-of-type');
-        if (row2Trending) row2Trending.style.display = 'none';
-
-        document.querySelector('#trending-section h2').textContent = `Search Results (${results.length})`;
-
-        // Switch grid to normal wrapping layout for search
-        searchGrid = document.getElementById('trending-grid-1');
-        if (searchGrid) {
-            searchGrid.className = 'model-grid';
-            searchGrid.style.width = '';
-        }
-        if (searchRow) searchRow.style.flexWrap = 'wrap';
+        searchLabel.textContent = `Search Results (${results.length})`;
 
         if (results.length > 0) {
             searchGrid.innerHTML = results.map(createModelCard).join('');
         } else {
-            searchGrid.innerHTML = '<p style="text-align:center;padding:40px;width:100%;">No models found matching your search.</p>';
+            searchGrid.innerHTML = '<p style="grid-column:1/-1; text-align:center; padding:60px 0; color:var(--text-muted);">No models found matching your search.</p>';
         }
+
+        showSearch();
     });
 }
