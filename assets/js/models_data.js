@@ -35,7 +35,7 @@ const icons = {
     gemma: "assets/img/gemma.png",
     llama: "assets/img/llama.jpg",
     deepseek: "assets/img/deepseek.png",
-    qwen: "assets/img/qwen.png",
+    qwen: "assets/img/Qwen.png",
     mistral: "assets/img/mistral.png",
     stable_diffusion: "assets/img/Stable Diffusion.png",
     blackforest: "assets/img/blackforest.png",
