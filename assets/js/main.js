@@ -4,6 +4,14 @@ function navigateWithTransition(href) {
     setTimeout(() => { window.location.href = href; }, 220);
 }
 
+/* ── Resolve asset paths relative to current page depth ── */
+function resolveIconPath(iconPath) {
+    // If we're inside a subdirectory (e.g. categories/), prefix with '../'
+    const depth = window.location.pathname.split('/').length - 2;
+    const prefix = depth > 1 ? '../'.repeat(depth - 1) : '';
+    return prefix + iconPath;
+}
+
 function setupSmoothLinks() {
     document.querySelectorAll('a[href]').forEach(link => {
         const href = link.getAttribute('href');
@@ -20,9 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCategories();
     renderTrending();
     renderRecentlyAdded();
+    adjustCarouselCardWidths();   // set exact 3-per-row sizing
+    setupCarouselArrows();
     setupSearch();
     setupSmoothLinks(); // run after all cards are rendered
 });
+
+// Re-adjust on resize so 3-card layout stays correct at any window size
+window.addEventListener('resize', adjustCarouselCardWidths);
 
 
 function renderCategories() {
@@ -43,11 +56,18 @@ function renderCategories() {
 }
 
 function createModelCard(model) {
+    const iconHtml = model.icon
+        ? `<img src="${model.icon}" alt="${model.name} logo" class="model-icon" onerror="this.style.display='none'">`
+        : '';
     return `
         <div class="model-card">
-            <div>
-                ${model.tags.map(tag => `<span class="model-badge">${tag}</span>`).join(' ')}
+            <div class="model-card-header">
+                ${iconHtml}
+                <div>
+                    ${model.tags.map(tag => `<span class="model-badge">${tag}</span>`).join(' ')}
+                </div>
             </div>
+
             <h3 class="model-title">${model.name}</h3>
             <p class="model-dev">By ${model.developer}</p>
             <p class="model-desc">${model.description}</p>
@@ -60,53 +80,125 @@ function createModelCard(model) {
 }
 
 function renderTrending() {
-    const grid = document.getElementById('trending-grid');
-    if (!grid) return;
+    const row1 = document.getElementById('trending-grid-1');
+    const row2 = document.getElementById('trending-grid-2');
+    if (!row1 || !row2) return;
 
     const trending = modelsData.models.filter(m => m.trending);
-    grid.innerHTML = trending.map(createModelCard).join('');
+    // Split: odd indexes → row1, even indexes → row2
+    const half1 = trending.filter((_, i) => i % 2 === 0);
+    const half2 = trending.filter((_, i) => i % 2 === 1);
+
+    row1.innerHTML = half1.map(createModelCard).join('');
+    row2.innerHTML = half2.map(createModelCard).join('');
 }
 
 function renderRecentlyAdded() {
-    const grid = document.getElementById('recent-grid');
-    if (!grid) return;
+    const row1 = document.getElementById('recent-grid-1');
+    const row2 = document.getElementById('recent-grid-2');
+    if (!row1 || !row2) return;
 
     const recent = modelsData.models.filter(m => m.recent);
-    grid.innerHTML = recent.map(createModelCard).join('');
+    const half1 = recent.filter((_, i) => i % 2 === 0);
+    const half2 = recent.filter((_, i) => i % 2 === 1);
+
+    row1.innerHTML = half1.map(createModelCard).join('');
+    row2.innerHTML = half2.map(createModelCard).join('');
+}
+
+/* ── Fit exactly 3 cards in each scroll row ─────────────── */
+function adjustCarouselCardWidths() {
+    const GAP = 18;          // matches CSS gap on .model-row
+    const CARDS_VISIBLE = 3;
+
+    document.querySelectorAll('.scroll-wrapper').forEach(wrapper => {
+        const wrapperWidth = wrapper.clientWidth;
+        if (wrapperWidth === 0) return; // not yet painted
+        const cardWidth = Math.floor(
+            (wrapperWidth - GAP * (CARDS_VISIBLE - 1)) / CARDS_VISIBLE
+        );
+        wrapper.querySelectorAll('.model-card').forEach(card => {
+            card.style.width    = cardWidth + 'px';
+            card.style.minWidth = cardWidth + 'px';
+            card.style.maxWidth = cardWidth + 'px';
+        });
+        // Store card width on wrapper for arrow scroll amount
+        wrapper.dataset.cardWidth = cardWidth;
+    });
+}
+
+/* ── Arrow button wiring ──────────────────────────────── */
+function setupCarouselArrows() {
+    document.querySelectorAll('.carousel-arrow').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.dataset.target;
+            const wrapper = document.getElementById(targetId);
+            if (!wrapper) return;
+            // Use computed card width + gap for one-card scroll step
+            const cardWidth = parseInt(wrapper.dataset.cardWidth) || 290;
+            const scrollAmount = cardWidth + 18; // card + gap
+            if (btn.classList.contains('carousel-arrow--left')) {
+                wrapper.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else {
+                wrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        });
+    });
 }
 
 function setupSearch() {
     const searchInput = document.getElementById('model-search');
     if (!searchInput) return;
 
+    // Use the first trending row as the search results container
+    const searchRow = document.getElementById('trending-row-1');
+    let searchGrid = document.getElementById('trending-grid-1');
+
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value.toLowerCase();
         if (query.length < 2) {
-            // Reset to default views if search is cleared
+            // Reset: re-render and show all sections
             renderTrending();
             renderRecentlyAdded();
             document.querySelectorAll('section').forEach(s => s.style.display = 'block');
+            // Restore row 2 visibility
+            const row2Trending = document.querySelector('#trending-section .carousel-row:last-of-type');
+            const row2Recent   = document.querySelector('#recently-added-section .carousel-row:last-of-type');
+            if (row2Trending) row2Trending.style.display = '';
+            if (row2Recent)   row2Recent.style.display   = '';
+            // Restore label
+            document.querySelector('#trending-section h2').textContent = 'Trending Models';
             return;
         }
 
-        const results = modelsData.models.filter(m => 
-            m.name.toLowerCase().includes(query) || 
+        const results = modelsData.models.filter(m =>
+            m.name.toLowerCase().includes(query) ||
             m.description.toLowerCase().includes(query) ||
             m.developer.toLowerCase().includes(query)
         );
 
-        // Hide other sections and show search results in trending grid
+        // Hide irrelevant sections
         document.getElementById('category-section').style.display = 'none';
-        document.getElementById('recent-section').style.display = 'none';
-        
-        const trendingSection = document.getElementById('trending-section');
-        trendingSection.querySelector('h2').textContent = `Search Results (${results.length})`;
-        
-        const grid = document.getElementById('trending-grid');
+        document.getElementById('recently-added-section').style.display = 'none';
+
+        // Hide row 2 of trending (use row 1 as flat search results)
+        const row2Trending = document.querySelector('#trending-section .carousel-row:last-of-type');
+        if (row2Trending) row2Trending.style.display = 'none';
+
+        document.querySelector('#trending-section h2').textContent = `Search Results (${results.length})`;
+
+        // Switch grid to normal wrapping layout for search
+        searchGrid = document.getElementById('trending-grid-1');
+        if (searchGrid) {
+            searchGrid.className = 'model-grid';
+            searchGrid.style.width = '';
+        }
+        if (searchRow) searchRow.style.flexWrap = 'wrap';
+
         if (results.length > 0) {
-            grid.innerHTML = results.map(createModelCard).join('');
+            searchGrid.innerHTML = results.map(createModelCard).join('');
         } else {
-            grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">No models found matching your search.</p>';
+            searchGrid.innerHTML = '<p style="text-align:center;padding:40px;width:100%;">No models found matching your search.</p>';
         }
     });
 }

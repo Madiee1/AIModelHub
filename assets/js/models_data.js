@@ -1,11 +1,76 @@
+const links = {
+    gemma: "https://gemini.google.com",
+    llama: "https://llama.meta.com",
+    deepseek: "https://deepseek.com",
+    whisper: "https://openai.com/whisper",
+    qwen: "https://huggingface.co/Qwen",
+    mistral: "https://huggingface.co/mistralai",
+    stable_diffusion: "https://huggingface.co/stabilityai",
+    flux: "https://huggingface.co/black-forest-labs",
+    runway: "https://runwayml.com",
+    pikalabs: "https://pika.art",
+    openaisora: "https://openai.com/sora",
+    googleveo: "https://deepmind.google/technologies/veo",
+    Synthesia: "https://synthesia.io",
+    HeyGen: "https://heygen.com",
+    KaiberAI: "https://kaiber.ai",
+    LumaDreamMachine: "https://lumalabs.ai/dream-machine",
+    OpenAIGPT4: "https://openai.com/gpt-4",
+    AnthropicClaude: "https://claude.ai",
+    GoogleGemini: "https://gemini.google.com",
+    MetaLLaMA: "https://llama.meta.com",
+    MistralAI: "https://mistral.ai",
+    Cohere: "https://cohere.com",
+    ChatGPT: "https://chat.openai.com",
+    GitHubCopilot: "https://github.com/features/copilot",
+    Cursor: "https://cursor.sh",
+    ClaudeCode: "https://claude.ai",
+    GoogleGeminiCodeAssist: "https://cloud.google.com/ai-assistant",
+    ContinueDev: "https://continue.dev",
+    Codeium: "https://codeium.com",
+    Tabby: "https://tabby.tabbyml.com",
+}
+
+const icons = {
+    gemma: "assets/img/gemma.png",
+    llama: "assets/img/llama.jpg",
+    deepseek: "assets/img/deepseek.png",
+    qwen: "assets/img/qwen.png",
+    mistral: "assets/img/mistral.png",
+    stable_diffusion: "assets/img/Stable Diffusion.png",
+    blackforest: "assets/img/blackforest.png",
+    runway: "assets/img/Runway.png",
+    pikalabs: "assets/img/pikka.png",
+    openaisora: "assets/img/opneaisora.png",
+    googleveo: "assets/img/googleveo.png",
+    synthesia: "assets/img/synthesia.png",
+    heygen: "assets/img/heygen.png",
+    kaiber: "assets/img/kaiber.png",
+    lumadreammachine: "assets/img/luma.png",
+    gpt: "assets/img/GPT.png",
+    claude: "assets/img/claude.png",
+    gemini: "assets/img/gemini.png",
+    cohere: "assets/img/cohere.png",
+    cursor: "assets/img/cursor.png",
+    codeium: "assets/img/codium.png",
+    tabby: "assets/img/tabby.png",
+    continuedev: "assets/img/continuedev.png",
+    runway: "assets/img/runway.png",
+    copilot: "assets/img/copilot.png",
+    kaiber: "assets/img/kaiber.png",
+    heygen: "assets/img/heygen.png"
+
+}
+
 const modelsData = {
     categories: [
-        { id: "llm", name: "Large Language Models", icon: "fas fa-brain", description: "Models for text generation, reasoning, and conversation." },
+        { id: "llm", name: "Text Generation", icon: "fas fa-brain", description: "Models for text generation, reasoning, and conversation." },
         { id: "image", name: "Image Generation", icon: "fas fa-image", description: "Create stunning visuals from text prompts." },
         { id: "audio", name: "Audio & Speech", icon: "fas fa-microphone", description: "Speech-to-text, text-to-speech, and music generation." },
         { id: "multimodal", name: "Multimodal", icon: "fas fa-layer-group", description: "Models that understand both text and images." },
         { id: "code", name: "Code Generation", icon: "fas fa-code", description: "Specialized models for programming and software development." }
     ],
+
     models: [
         {
             id: 1,
@@ -16,7 +81,8 @@ const modelsData = {
             trending: true,
             recent: true,
             tags: ["New", "SOTA"],
-            link: "https://huggingface.co/meta-llama"
+            link: links.llama,
+            icon: icons.llama
         },
         {
             id: 2,
@@ -27,7 +93,8 @@ const modelsData = {
             trending: true,
             recent: true,
             tags: ["Lightweight"],
-            link: "https://huggingface.co/google/gemma-3-27b"
+            link: links.gemma,
+            icon: icons.gemma
         },
         {
             id: 3,
@@ -38,7 +105,8 @@ const modelsData = {
             trending: true,
             recent: false,
             tags: ["Reasoning"],
-            link: "https://huggingface.co/deepseek-ai/DeepSeek-V3"
+            link: links.deepseek,
+            icon: icons.deepseek
         },
         {
             id: 4,
@@ -49,7 +117,8 @@ const modelsData = {
             trending: true,
             recent: true,
             tags: ["Art"],
-            link: "https://huggingface.co/stabilityai/stable-diffusion-3.5-large"
+            link: links.stable_diffusion,
+            icon: icons.stable_diffusion
         },
         {
             id: 5,
@@ -60,7 +129,8 @@ const modelsData = {
             trending: false,
             recent: false,
             tags: ["Speech"],
-            link: "https://huggingface.co/openai/whisper-large-v3"
+            link: links.whisper,
+            icon: icons.whisper
         },
         {
             id: 6,
@@ -71,7 +141,8 @@ const modelsData = {
             trending: true,
             recent: true,
             tags: ["Coding"],
-            link: "https://huggingface.co/Qwen/Qwen2.5-Coder-32B-Instruct"
+            link: links.qwen,
+            icon: icons.qwen
         },
         {
             id: 7,
@@ -82,7 +153,8 @@ const modelsData = {
             trending: true,
             recent: true,
             tags: ["Vision"],
-            link: "https://huggingface.co/deepseek-ai/Janus-Pro-7B"
+            link: links.deepseek,
+            icon: icons.deepseek
         },
         {
             id: 8,
@@ -93,7 +165,8 @@ const modelsData = {
             trending: false,
             recent: false,
             tags: ["Efficient"],
-            link: "https://huggingface.co/mistralai/Mistral-7B-v0.3"
+            link: links.mistral,
+            icon: icons.mistral
         },
         {
             id: 9,
@@ -104,8 +177,273 @@ const modelsData = {
             trending: true,
             recent: true,
             tags: ["Photorealism"],
-            link: "https://huggingface.co/black-forest-labs/FLUX.1-dev"
-        }
+            link: links.flux,
+            icon: icons.blackforest
+        },
+        {
+            id: 28,
+            name: "ChatGPT",
+            developer: "OpenAI",
+            category: "code",
+            description: "Generates code in Python, Java, C++, JavaScript, SQL, and more. Explains code line by line, helps debug errors, and is great for learning and project development.",
+            trending: true,
+            recent: true,
+            tags: ["AI Assistant", "Multi-language"],
+            link: links.ChatGPT,
+            icon: icons.gpt
+        },
+        {
+            id: 29,
+            name: "GitHub Copilot",
+            developer: "GitHub",
+            category: "code",
+            description: "Integrates directly with VS Code and other IDEs. Autocompletes functions and classes, generates code from comments. Widely used by professional developers.",
+            trending: true,
+            recent: true,
+            tags: ["IDE Integration", "Autocomplete"],
+            link: links.GitHubCopilot,
+            icon: icons.copilot
+        },
+        {
+            id: 30,
+            name: "Cursor",
+            developer: "Cursor",
+            category: "code",
+            description: "AI-first code editor that can understand an entire codebase. Excellent for refactoring and debugging large projects.",
+            trending: true,
+            recent: true,
+            tags: ["AI Editor", "Codebase Understanding"],
+            link: links.Cursor,
+            icon: icons.cursor
+        },
+        {
+            id: 31,
+            name: "Claude Code",
+            developer: "Anthropic",
+            category: "code",
+            description: "Strong at code analysis and large codebases. Useful for reviewing architecture and making changes across files.",
+            trending: true,
+            recent: true,
+            tags: ["Code Analysis", "Architecture"],
+            link: links.ClaudeCode,
+            icon: icons.claude
+        },
+        {
+            id: 32,
+            name: "Google Gemini Code Assist",
+            developer: "Google",
+            category: "code",
+            description: "AI coding assistant from Google. Supports multiple programming languages with good integration with Google Cloud.",
+            trending: true,
+            recent: true,
+            tags: ["Cloud Integration", "Multi-language"],
+            link: links.GoogleGeminiCodeAssist,
+            icon: icons.gemini
+        },
+        {
+            id: 33,
+            name: "Continue.dev",
+            developer: "Continue",
+            category: "code",
+            description: "Open-source AI coding assistant that works inside VS Code and JetBrains IDEs.",
+            trending: true,
+            recent: true,
+            tags: ["Open Source", "IDE Integration"],
+            link: links.ContinueDev,
+            icon: icons.continuedev
+        },
+        {
+            id: 34,
+            name: "Codeium",
+            developer: "Codeium",
+            category: "code",
+            description: "Free AI code completion that supports many languages and IDEs.",
+            trending: true,
+            recent: true,
+            tags: ["Free", "Multi-language"],
+            link: links.Codeium,
+            icon: icons.codeium
+        },
+        {
+            id: 35,
+            name: "Tabby",
+            developer: "TabbyML",
+            category: "code",
+            description: "Self-hosted AI coding assistant, good for privacy-sensitive projects.",
+            trending: true,
+            recent: true,
+            tags: ["Self-hosted", "Privacy"],
+            link: links.Tabby,
+            icon: icons.tabby
+        },
+        {
+            id: 36,
+            name: "OpenAI GPT-4",
+            developer: "OpenAI",
+            category: "llm",
+            description: "Used in ChatGPT. Very strong in coding (Python, Java, etc.), reasoning, math + problem solving. Best overall general-purpose LLM.",
+            trending: true,
+            recent: true,
+            tags: ["General Purpose", "SOTA"],
+            link: links.OpenAIGPT4,
+            icon: icons.gpt
+        },
+        {
+            id: 37,
+            name: "Anthropic Claude",
+            developer: "Anthropic",
+            category: "llm",
+            description: "Very strong in long document analysis, codebase understanding, and safe reasoning. Popular for research + enterprise work.",
+            trending: true,
+            recent: true,
+            tags: ["Enterprise", "Safe AI"],
+            link: links.AnthropicClaude,
+            icon: icons.claude
+        },
+        {
+            id: 38,
+            name: "Google Gemini",
+            developer: "Google",
+            category: "llm",
+            description: "Google's LLM family. Strong in multimodal tasks (text + image + video) and Google ecosystem integration. Good for cloud + data workflows.",
+            trending: true,
+            recent: true,
+            tags: ["Multimodal", "Cloud"],
+            link: links.GoogleGemini,
+            icon: icons.gemini
+        },
+        {
+            id: 39,
+            name: "Meta LLaMA",
+            developer: "Meta",
+            category: "llm",
+            description: "Open-source LLM family used to build custom AI apps. Popular for fine-tuning, research, and local deployment.",
+            trending: true,
+            recent: true,
+            tags: ["Open Source", "Customizable"],
+            link: links.MetaLLaMA,
+            icon: icons.llama
+        },
+        {
+            id: 40,
+            name: "Mistral AI",
+            developer: "Mistral AI",
+            category: "llm",
+            description: "Lightweight, fast LLMs with strong performance using fewer resources. Great for startups and local models.",
+            trending: true,
+            recent: true,
+            tags: ["Lightweight", "Efficient"],
+            link: links.MistralAI,
+            icon: icons.mistral
+        },
+        {
+            id: 41,
+            name: "Cohere",
+            developer: "Cohere",
+            category: "llm",
+            description: "Focus on enterprise NLP. Good for search systems, document retrieval, and RAG applications.",
+            trending: true,
+            recent: true,
+            tags: ["Enterprise", "RAG"],
+            link: links.Cohere,
+            icon: icons.cohere
+        },
+        {
+            id: 42,
+            name: "Runway ML",
+            developer: "Runway",
+            category: "video",
+            description: "One of the most powerful AI video tools. Features text-to-video generation, video editing with AI, background removal, and motion tracking. Used in filmmaking and content creation.",
+            trending: true,
+            recent: true,
+            tags: ["Text-to-Video", "Video Editing"],
+            link: links.runway,
+            icon: icons.runway
+        },
+        {
+            id: 43,
+            name: "Pika Labs",
+            developer: "Pika Labs",
+            category: "video",
+            description: "Very popular for cinematic AI videos. Features text-to-video, image-to-video animation, and stylized effects (anime, realistic, 3D).",
+            trending: false,
+            recent: true,
+            tags: ["Cinematic", "Animation"],
+            link: links.pikalabs,
+            icon: icons.pikalabs
+        },
+        {
+            id: 44,
+            name: "OpenAI Sora",
+            developer: "OpenAI",
+            category: "video",
+            description: "High-quality realistic video generation. Strong in physics-based scenes and long-form realistic video clips. Still rolling out in many regions.",
+            trending: false,
+            recent: true,
+            tags: ["Realistic", "Physics-based"],
+            link: links.openaisora,
+            icon: icons.gpt
+        },
+        {
+            id: 45,
+            name: "Google Veo",
+            developer: "Google",
+            category: "video",
+            description: "Google's advanced video model that generates high-resolution cinematic videos with natural motion and storytelling clips.",
+            trending: false,
+            recent: false,
+            tags: ["Cinematic", "High-resolution"],
+            link: links.googleveo,
+            icon: icons.gemini
+        },
+        {
+            id: 46,
+            name: "Synthesia",
+            developer: "Synthesia",
+            category: "video",
+            description: "AI avatar-based video creation for corporate training videos, presentations, and AI spokesperson videos.",
+            trending: false,
+            recent: false,
+            tags: ["Avatars", "Corporate"],
+            link: links.Synthesia,
+            icon: icons.synthesia
+        },
+        {
+            id: 47,
+            name: "HeyGen",
+            developer: "HeyGen",
+            category: "video",
+            description: "AI talking avatar videos with lip-sync with scripts, multiple languages, and business explainer videos.",
+            trending: false,
+            recent: false,
+            tags: ["Avatars", "Lip-sync"],
+            link: links.HeyGen,
+            icon: icons.heygen
+        },
+        {
+            id: 48,
+            name: "Kaiber AI",
+            developer: "Kaiber",
+            category: "video",
+            description: "Great for music videos and creative visuals. Used by artists and creators for artistic video generation.",
+            trending: false,
+            recent: false,
+            tags: ["Music Videos", "Creative"],
+            link: links.kaiber,
+            icon: icons.kaiber
+        },
+        {
+            id: 49,
+            name: "Luma Dream Machine",
+            developer: "Luma AI",
+            category: "video",
+            description: "Very realistic motion generation with strong temporal consistency for smooth video frames.",
+            trending: false,
+            recent: true,
+            tags: ["Realistic", "Motion"],
+            link: links.LumaDreamMachine,
+            icon: icons.lumadreammachine
+        },
     ]
 };
 

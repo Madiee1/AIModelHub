@@ -2,10 +2,14 @@
     --primary-color: #2563eb;
     --secondary-color: #64748b;
     --bg-color: #ffffff;
-    --mesh-color-1: rgba(79, 184, 236, 0.4); /* light blue */
-    --mesh-color-2: rgba(134, 113, 225, 0.4); /* light purple */
-    --mesh-color-3: rgba(129, 179, 146, 0.3); /* light green */
-    --mesh-color-4: rgba(254, 215, 226, 0.4); /* light pink */
+    --mesh-color-1: rgba(79, 184, 236, 0.4);
+    /* light blue */
+    --mesh-color-2: rgba(134, 113, 225, 0.4);
+    /* light purple */
+    --mesh-color-3: rgba(129, 179, 146, 0.3);
+    /* light green */
+    --mesh-color-4: rgba(254, 215, 226, 0.4);
+    /* light pink */
     --card-bg: #ffffff;
     --text-main: #1e293b;
     --text-muted: #64748b;
@@ -20,12 +24,17 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* ── Page Transition ─────────────────────────────────── */
 @keyframes pageEnter {
     from {
         opacity: 0;
         transform: translateY(18px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -37,6 +46,7 @@
         opacity: 1;
         transform: translateY(0);
     }
+
     to {
         opacity: 0;
         transform: translateY(-14px);
@@ -55,14 +65,14 @@ body.page-exit {
 body {
     font-family: var(--font-sans);
     background-color: var(--bg-color);
-    background-image: 
-        radial-gradient(at 0% 0%, var(--mesh-color-2) 0, transparent 50%), 
-        radial-gradient(at 50% 0%, var(--mesh-color-1) 0, transparent 50%), 
-        radial-gradient(at 100% 0%, var(--mesh-color-3) 0, transparent 50%), 
-        radial-gradient(at 0% 50%, var(--mesh-color-4) 0, transparent 50%), 
-        radial-gradient(at 100% 50%, var(--mesh-color-2) 0, transparent 50%), 
-        radial-gradient(at 0% 100%, var(--mesh-color-1) 0, transparent 50%), 
-        radial-gradient(at 50% 100%, var(--mesh-color-4) 0, transparent 50%), 
+    background-image:
+        radial-gradient(at 0% 0%, var(--mesh-color-2) 0, transparent 50%),
+        radial-gradient(at 50% 0%, var(--mesh-color-1) 0, transparent 50%),
+        radial-gradient(at 100% 0%, var(--mesh-color-3) 0, transparent 50%),
+        radial-gradient(at 0% 50%, var(--mesh-color-4) 0, transparent 50%),
+        radial-gradient(at 100% 50%, var(--mesh-color-2) 0, transparent 50%),
+        radial-gradient(at 0% 100%, var(--mesh-color-1) 0, transparent 50%),
+        radial-gradient(at 50% 100%, var(--mesh-color-4) 0, transparent 50%),
         radial-gradient(at 100% 100%, var(--mesh-color-3) 0, transparent 50%);
     background-attachment: fixed;
     color: var(--text-main);
@@ -88,6 +98,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
+
 }
 
 nav {
@@ -152,6 +163,7 @@ nav {
 /* Sections */
 section {
     padding: 40px 0;
+    scroll-margin-top: 86px; /* sticky header (70px) + breathing room (16px) */
 }
 
 .section-header {
@@ -179,8 +191,8 @@ section {
     text-align: center;
     border: 1px solid var(--border-color);
     transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 0.3s ease,
-                border-color 0.3s ease;
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
 }
 
 .category-card:hover {
@@ -202,6 +214,82 @@ section {
     gap: 24px;
 }
 
+/* ── Carousel (2 independent rows + arrows) ──────────── */
+.carousel-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Arrow buttons */
+.carousel-arrow {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease,
+                border-color 0.2s ease, transform 0.15s ease,
+                box-shadow 0.2s ease;
+    z-index: 1;
+}
+
+.carousel-arrow:hover {
+    background: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+    transform: scale(1.1);
+    box-shadow: 0 4px 14px rgb(37 99 235 / 0.35);
+}
+
+.carousel-arrow:active {
+    transform: scale(0.95);
+}
+
+/* Scroll strip */
+.scroll-wrapper {
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) transparent;
+    scroll-behavior: smooth;
+    padding-bottom: 8px;
+}
+
+.scroll-wrapper::-webkit-scrollbar { height: 5px; }
+.scroll-wrapper::-webkit-scrollbar-track { background: transparent; }
+.scroll-wrapper::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 99px;
+}
+.scroll-wrapper::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+/* Model strip inside each row */
+.model-row {
+    display: flex;
+    gap: 18px;
+    padding: 4px 2px 4px 2px;
+    scroll-snap-type: x mandatory;
+    width: max-content;
+}
+
+.model-row .model-card {
+    /* width set dynamically by JS to fit exactly 3 per visible row */
+    flex-shrink: 0;
+    scroll-snap-align: start;
+}
+
+
 .model-card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -210,14 +298,33 @@ section {
     display: flex;
     flex-direction: column;
     transition: box-shadow 0.3s ease,
-                transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-                border-color 0.3s ease;
+        transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.3s ease;
 }
 
 .model-card:hover {
     box-shadow: 0 10px 24px -4px rgb(0 0 0 / 0.12);
     transform: translateY(-4px);
     border-color: var(--primary-color);
+}
+
+/* Model icon */
+.model-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.model-icon {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    padding: 4px;
+    background: #fff;
+    flex-shrink: 0;
 }
 
 .model-badge {
@@ -288,6 +395,7 @@ footer {
     .nav-links {
         display: none;
     }
+
     .hero h1 {
         font-size: 2rem;
     }

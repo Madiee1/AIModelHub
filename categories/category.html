@@ -115,10 +115,17 @@
             const models = modelsData.models.filter(m => m.category === catId);
 
             if (models.length > 0) {
-                grid.innerHTML = models.map(model => `
+                grid.innerHTML = models.map(model => {
+                    const iconHtml = model.icon
+                        ? `<img src="../${model.icon}" alt="${model.name} logo" class="model-icon" onerror="this.style.display='none'">`
+                        : '';
+                    return `
                     <div class="model-card">
-                        <div>
-                            ${model.tags.map(tag => `<span class="model-badge">${tag}</span>`).join(' ')}
+                        <div class="model-card-header">
+                            ${iconHtml}
+                            <div>
+                                ${model.tags.map(tag => `<span class="model-badge">${tag}</span>`).join(' ')}
+                            </div>
                         </div>
                         <h3 class="model-title">${model.name}</h3>
                         <p class="model-dev">By ${model.developer}</p>
@@ -127,7 +134,7 @@
                             <a href="${model.link}" target="_blank" class="btn-view">View Model</a>
                         </div>
                     </div>
-                `).join('');
+                `}).join('');
             } else {
                 grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">No models found in this category yet.</p>';
             }

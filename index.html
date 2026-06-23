@@ -16,16 +16,17 @@
             <nav>
                 <a href="index.html" class="logo">AI Hub</a>
                 <div class="nav-links">
-                    <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+                    <a href="#hero-section"><i class="fa-solid fa-house"></i> Home</a>
                     <a href="#category-section"><i class="fa-solid fa-bars"></i> Categories</a>
                     <a href="#trending-section"><i class="fa-solid fa-fire"></i> Trending</a>
+                    <a href="#recently-added-section"><i class="fa-solid fa-fire"></i> Recently Added</a>
                 </div>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="hero">
+        <section id="hero-section" class="hero">
             <div class="container">
                 <h1>Discover Open-Source AI</h1>
                 <p>Explore the latest and most powerful open-source AI models in one place.</p>
@@ -35,6 +36,7 @@
                 </div>
             </div>
         </section>
+        <br>
 
         <section id="category-section" class="container">
             <div class="section-header">
@@ -44,22 +46,66 @@
                 <!-- Categories will be injected here -->
             </div>
         </section>
+        <br>
 
         <section id="trending-section" class="container">
             <div class="section-header">
                 <h2>Trending Models</h2>
             </div>
-            <div id="trending-grid" class="model-grid">
-                <!-- Trending models will be injected here -->
+            <!-- Row 1 -->
+            <div class="carousel-row">
+                <button class="carousel-arrow carousel-arrow--left" data-target="trending-row-1" aria-label="Scroll left">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="scroll-wrapper" id="trending-row-1">
+                    <div class="model-row" id="trending-grid-1"></div>
+                </div>
+                <button class="carousel-arrow carousel-arrow--right" data-target="trending-row-1" aria-label="Scroll right">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+            <!-- Row 2 -->
+            <div class="carousel-row" style="margin-top: 20px;">
+                <button class="carousel-arrow carousel-arrow--left" data-target="trending-row-2" aria-label="Scroll left">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="scroll-wrapper" id="trending-row-2">
+                    <div class="model-row" id="trending-grid-2"></div>
+                </div>
+                <button class="carousel-arrow carousel-arrow--right" data-target="trending-row-2" aria-label="Scroll right">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
             </div>
         </section>
+        <br>
 
-        <section id="recent-section" class="container">
+        <section id="recently-added-section" class="container">
             <div class="section-header">
                 <h2>Recently Added</h2>
             </div>
-            <div id="recent-grid" class="model-grid">
-                <!-- Recent models will be injected here -->
+            <!-- Row 1 -->
+            <div class="carousel-row">
+                <button class="carousel-arrow carousel-arrow--left" data-target="recent-row-1" aria-label="Scroll left">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="scroll-wrapper" id="recent-row-1">
+                    <div class="model-row" id="recent-grid-1"></div>
+                </div>
+                <button class="carousel-arrow carousel-arrow--right" data-target="recent-row-1" aria-label="Scroll right">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+            <!-- Row 2 -->
+            <div class="carousel-row" style="margin-top: 20px;">
+                <button class="carousel-arrow carousel-arrow--left" data-target="recent-row-2" aria-label="Scroll left">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="scroll-wrapper" id="recent-row-2">
+                    <div class="model-row" id="recent-grid-2"></div>
+                </div>
+                <button class="carousel-arrow carousel-arrow--right" data-target="recent-row-2" aria-label="Scroll right">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
             </div>
         </section>
     </main>
