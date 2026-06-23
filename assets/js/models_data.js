@@ -13,7 +13,7 @@ const links = {
     googleveo: "https://deepmind.google/technologies/veo",
     Synthesia: "https://synthesia.io",
     HeyGen: "https://heygen.com",
-    KaiberAI: "https://kaiber.ai",
+    KaiberAI: "https://kaiber.ai/",
     LumaDreamMachine: "https://lumalabs.ai/dream-machine",
     OpenAIGPT4: "https://openai.com/gpt-4",
     AnthropicClaude: "https://claude.ai",
@@ -29,6 +29,7 @@ const links = {
     ContinueDev: "https://continue.dev",
     Codeium: "https://codeium.com",
     Tabby: "https://tabby.tabbyml.com",
+    nanobanana: "https://gemini.google.com/images"
 }
 
 const icons = {
@@ -48,7 +49,7 @@ const icons = {
     kaiber: "assets/img/kaiber.png",
     lumadreammachine: "assets/img/luma.png",
     gpt: "assets/img/GPT.png",
-    claude: "assets/img/claude.png",
+    claude: "assets/img/Claude.png",
     gemini: "assets/img/gemini.png",
     cohere: "assets/img/cohere.png",
     cursor: "assets/img/cursor.png",
@@ -58,7 +59,8 @@ const icons = {
     runway: "assets/img/runway.png",
     copilot: "assets/img/copilot.png",
     kaiber: "assets/img/kaiber.png",
-    heygen: "assets/img/heygen.png"
+    heygen: "assets/img/heygen.png",
+    nanobanana: "assets/img/nano-banana.png"
 
 }
 
@@ -158,18 +160,6 @@ const modelsData = {
         },
         {
             id: 8,
-            name: "Mistral 7B v0.3",
-            developer: "Mistral AI",
-            category: "llm",
-            description: "Highly efficient and powerful small language model.",
-            trending: false,
-            recent: false,
-            tags: ["Efficient"],
-            link: links.mistral,
-            icon: icons.mistral
-        },
-        {
-            id: 9,
             name: "Flux.1",
             developer: "Black Forest Labs",
             category: "image",
@@ -386,6 +376,18 @@ const modelsData = {
         },
         {
             id: 45,
+            name: "Nano Banana",
+            developer: "Google",
+            category: "image",
+            description: "Google's advanced video model that generates high-resolution cinematic videos with natural motion and storytelling clips.",
+            trending: false,
+            recent: false,
+            tags: ["Cinematic", "High-resolution"],
+            link: links.nanobanana,
+            icon: icons.nanobanana
+        },
+        {
+            id: 46,
             name: "Google Veo",
             developer: "Google",
             category: "image",
@@ -429,7 +431,7 @@ const modelsData = {
             trending: false,
             recent: false,
             tags: ["Music Videos", "Creative"],
-            link: links.kaiber,
+            link: links.KaiberAI,
             icon: icons.kaiber
         },
         {
