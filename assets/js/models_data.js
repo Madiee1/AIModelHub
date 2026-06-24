@@ -60,7 +60,8 @@ const icons = {
     copilot: "assets/img/copilot.png",
     kaiber: "assets/img/kaiber.png",
     heygen: "assets/img/heygen.png",
-    nanobanana: "assets/img/nano-banana.png"
+    nanobanana: "assets/img/nano-banana.png",
+    whisper: "assets/img/whisper.png"
 
 }
 
