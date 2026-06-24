@@ -29,7 +29,24 @@ const links = {
     ContinueDev: "https://continue.dev",
     Codeium: "https://codeium.com",
     Tabby: "https://tabby.tabbyml.com",
-    nanobanana: "https://gemini.google.com/images"
+    nanobanana: "https://gemini.google.com/images",
+    ChatGPT_Image: "https://chat.openai.com",
+    Microsoft_Designer: "https://designer.microsoft.com",
+    Canva_AI: "https://www.canva.com",
+    Adobe_Firefly: "https://www.adobe.com/products/firefly.html",
+    Google_Speech_to_Text: "https://cloud.google.com/speech-to-text",
+    AssemblyAI: "https://www.assemblyai.com",
+    Deepgram: "https://deepgram.com",
+    ElevenLabs: "https://elevenlabs.io",
+    Google_Text_to_Speech: "https://cloud.google.com/text-to-speech",
+    Amazon_Polly: "https://aws.amazon.com/polly",
+    Murf_AI: "https://murf.ai",
+    ElevenLabs_Voice_Cloning: "https://elevenlabs.io/voice-cloning",
+    Resemble_AI: "https://www.resemble.ai",
+    Suno_AI: "https://suno.ai",
+    Udio: "https://www.udio.com",
+    AIVA: "https://www.aiva.ai",
+    Soundraw: "https://soundraw.io"
 }
 
 const icons = {
@@ -61,7 +78,29 @@ const icons = {
     kaiber: "assets/img/kaiber.png",
     heygen: "assets/img/heygen.png",
     nanobanana: "assets/img/nano-banana.png",
-    whisper: "assets/img/whisper.png"
+    whisper: "assets/img/whisper.png",
+    elevenlabs: "assets/img/elevenlabs.png",
+    murf: "assets/img/murf.png",
+    resemble: "assets/img/resemble.png",
+    google_speech: "assets/img/google_stt.png",
+    amazon_polly: "assets/img/amazon polly.png",
+    deepgram: "assets/img/deepgram.png",
+    assemblyai: "assets/img/assemblyai.png",
+    whisper: "assets/img/whisper.png",
+    udio: "assets/img/udio.avif",
+    suno: "assets/img/suno.png",
+    aiva: "assets/img/aiva.png",
+    soundraw: "assets/img/soundraw.png",
+    elevenlabs: "assets/img/11.png",
+    murf: "assets/img/murf.png",
+    resemble: "assets/img/resemble.png",
+    deepgram: "assets/img/deepgram.png",
+    canva: "assets/img/canva.jpg",
+    microsoft: "assets/img/microsoft.png",
+    adobe: "assets/img/adobe.png",
+    assemblyai: "assets/img/assemblyai.jpg",
+    murf: "assets/img/murf.png",
+
 
 }
 
@@ -171,8 +210,215 @@ const modelsData = {
             link: links.flux,
             icon: icons.blackforest
         },
+
         {
-            id: 28,
+            id: 9,
+            name: "ChatGPT Image",
+            developer: "OpenAI",
+            category: "image",
+            description: "Advanced image generation capabilities integrated into ChatGPT for seamless AI-powered creativity.",
+            trending: true,
+            recent: true,
+            tags: ["AI Assistant", "Versatile"],
+            link: links.ChatGPT_Image,
+            icon: icons.gpt
+        },
+        {
+            id: 10,
+            name: "Microsoft Designer",
+            developer: "Microsoft",
+            category: "image",
+            description: "AI-powered design tool that generates stunning visuals and graphics for any purpose.",
+            trending: true,
+            recent: true,
+            tags: ["Design", "Graphics"],
+            link: links.Microsoft_Designer,
+            icon: icons.microsoft
+        },
+        {
+            id: 11,
+            name: "Canva AI",
+            developer: "Canva",
+            category: "image",
+            description: "Intelligent design assistant that helps create professional-quality images and graphics effortlessly.",
+            trending: true,
+            recent: true,
+            tags: ["Design", "Easy-to-use"],
+            link: links.Canva_AI,
+            icon: icons.canva
+        },
+        {
+            id: 12,
+            name: "Adobe Firefly",
+            developer: "Adobe",
+            category: "image",
+            description: "Adobe's generative AI model for creating images, text effects, and creative designs.",
+            trending: true,
+            recent: true,
+            tags: ["Professional", "Creative"],
+            link: links.Adobe_Firefly,
+            icon: icons.adobe
+        },
+
+
+        {
+            id: 13,
+            name: "Google Speech-to-Text",
+            developer: "Google",
+            category: "audio",
+            description: "Real-time transcription with support for many languages. Suitable for enterprise applications.",
+            trending: true,
+            recent: true,
+            tags: ["Speech-to-Text", "Enterprise"],
+            link: links.Google_Speech_to_Text,
+            icon: icons.google_speech
+        },
+        {
+            id: 14,
+            name: "AssemblyAI",
+            developer: "AssemblyAI",
+            category: "audio",
+            description: "Speech-to-text API with speaker identification, sentiment analysis, and summarization capabilities.",
+            trending: true,
+            recent: true,
+            tags: ["Speech-to-Text", "API"],
+            link: links.AssemblyAI,
+            icon: icons.assemblyai
+        },
+        {
+            id: 15,
+            name: "Deepgram",
+            developer: "Deepgram",
+            category: "audio",
+            description: "Fast and accurate transcription with real-time speech recognition capabilities.",
+            trending: true,
+            recent: true,
+            tags: ["Speech-to-Text", "Real-time"],
+            link: links.Deepgram,
+            icon: icons.deepgram
+        },
+        {
+            id: 16,
+            name: "ElevenLabs",
+            developer: "ElevenLabs",
+            category: "audio",
+            description: "Human-like AI voices with voice cloning capabilities and support for multiple languages.",
+            trending: true,
+            recent: true,
+            tags: ["Text-to-Speech", "Voice Cloning"],
+            link: links.ElevenLabs,
+            icon: icons.elevenlabs
+        },
+        {
+            id: 17,
+            name: "Google Text-to-Speech",
+            developer: "Google",
+            category: "audio",
+            description: "Natural-sounding voices with support for many languages and applications.",
+            trending: true,
+            recent: true,
+            tags: ["Text-to-Speech", "Multi-language"],
+            link: links.Google_Text_to_Speech,
+            icon: icons.google_speech
+        },
+        {
+            id: 18,
+            name: "Amazon Polly",
+            developer: "Amazon",
+            category: "audio",
+            description: "Neural voices with SSML support, suitable for apps and IVR systems.",
+            trending: true,
+            recent: true,
+            tags: ["Text-to-Speech", "Neural"],
+            link: links.Amazon_Polly,
+            icon: icons.amazon_polly
+        },
+        {
+            id: 19,
+            name: "Murf AI",
+            developer: "Murf AI",
+            category: "audio",
+            description: "Studio-quality voiceovers for presentations and videos with professional narration.",
+            trending: true,
+            recent: true,
+            tags: ["Text-to-Speech", "Voiceover"],
+            link: links.Murf_AI,
+            icon: icons.murf
+        },
+        {
+            id: 20,
+            name: "ElevenLabs Voice Cloning",
+            developer: "ElevenLabs",
+            category: "audio",
+            description: "Clone voices from short samples with high-quality voice synthesis capabilities.",
+            trending: true,
+            recent: true,
+            tags: ["Voice Cloning", "High Quality"],
+            link: links.ElevenLabs_Voice_Cloning,
+            icon: icons.elevenlabs
+        },
+        {
+            id: 21,
+            name: "Resemble AI",
+            developer: "Resemble AI",
+            category: "audio",
+            description: "Custom AI voices with real-time voice generation capabilities.",
+            trending: true,
+            recent: true,
+            tags: ["Voice Cloning", "Real-time"],
+            link: links.Resemble_AI,
+            icon: icons.resemble
+        },
+        {
+            id: 22,
+            name: "Suno AI",
+            developer: "Suno",
+            category: "music",
+            description: "Generate complete songs from prompts with vocals, lyrics, and music included.",
+            trending: true,
+            recent: true,
+            tags: ["Music Generation", "Full Songs"],
+            link: links.Suno_AI,
+            icon: icons.suno
+        },
+        {
+            id: 23,
+            name: "Udio",
+            developer: "Udio",
+            category: "music",
+            description: "High-quality AI music generation across multiple genres and styles.",
+            trending: true,
+            recent: true,
+            tags: ["Music Generation", "Multi-genre"],
+            link: links.Udio,
+            icon: icons.udio
+        },
+        {
+            id: 24,
+            name: "AIVA",
+            developer: "AIVA",
+            category: "music",
+            description: "AI composer for background music, suitable for films and games.",
+            trending: true,
+            recent: true,
+            tags: ["Music Generation", "Composer"],
+            link: links.AIVA,
+            icon: icons.aiva
+        },
+        {
+            id: 25,
+            name: "Soundraw",
+            developer: "Soundraw",
+            category: "music",
+            description: "Create royalty-free music with customizable mood and tempo settings.",
+            trending: true,
+            recent: true,
+            tags: ["Music Generation", "Royalty-free"],
+            link: links.Soundraw,
+            icon: icons.soundraw
+        },
+        {
+            id: 26,
             name: "ChatGPT",
             developer: "OpenAI",
             category: "code",
@@ -184,7 +430,7 @@ const modelsData = {
             icon: icons.gpt
         },
         {
-            id: 29,
+            id: 27,
             name: "GitHub Copilot",
             developer: "GitHub",
             category: "code",
@@ -196,7 +442,7 @@ const modelsData = {
             icon: icons.copilot
         },
         {
-            id: 30,
+            id: 28,
             name: "Cursor",
             developer: "Cursor",
             category: "code",
@@ -208,7 +454,7 @@ const modelsData = {
             icon: icons.cursor
         },
         {
-            id: 31,
+            id: 29,
             name: "Claude Code",
             developer: "Anthropic",
             category: "code",
@@ -220,7 +466,7 @@ const modelsData = {
             icon: icons.claude
         },
         {
-            id: 32,
+            id: 30,
             name: "Google Gemini Code Assist",
             developer: "Google",
             category: "code",
@@ -232,7 +478,7 @@ const modelsData = {
             icon: icons.gemini
         },
         {
-            id: 33,
+            id: 31,
             name: "Continue.dev",
             developer: "Continue",
             category: "code",
@@ -244,7 +490,7 @@ const modelsData = {
             icon: icons.continuedev
         },
         {
-            id: 34,
+            id: 32,
             name: "Codeium",
             developer: "Codeium",
             category: "code",
@@ -256,7 +502,7 @@ const modelsData = {
             icon: icons.codeium
         },
         {
-            id: 35,
+            id: 33,
             name: "Tabby",
             developer: "TabbyML",
             category: "code",
@@ -268,7 +514,7 @@ const modelsData = {
             icon: icons.tabby
         },
         {
-            id: 36,
+            id: 34,
             name: "OpenAI GPT-4",
             developer: "OpenAI",
             category: "llm",
@@ -280,7 +526,7 @@ const modelsData = {
             icon: icons.gpt
         },
         {
-            id: 37,
+            id: 35,
             name: "Anthropic Claude",
             developer: "Anthropic",
             category: "llm",
@@ -292,7 +538,7 @@ const modelsData = {
             icon: icons.claude
         },
         {
-            id: 38,
+            id: 36,
             name: "Google Gemini",
             developer: "Google",
             category: "llm",
@@ -304,7 +550,7 @@ const modelsData = {
             icon: icons.gemini
         },
         {
-            id: 39,
+            id: 37,
             name: "Meta LLaMA",
             developer: "Meta",
             category: "llm",
@@ -316,7 +562,7 @@ const modelsData = {
             icon: icons.llama
         },
         {
-            id: 40,
+            id: 38,
             name: "Mistral AI",
             developer: "Mistral AI",
             category: "llm",
@@ -328,7 +574,7 @@ const modelsData = {
             icon: icons.mistral
         },
         {
-            id: 41,
+            id: 39,
             name: "Cohere",
             developer: "Cohere",
             category: "llm",
@@ -340,7 +586,7 @@ const modelsData = {
             icon: icons.cohere
         },
         {
-            id: 42,
+            id: 40,
             name: "Runway ML",
             developer: "Runway",
             category: "image",
@@ -352,7 +598,7 @@ const modelsData = {
             icon: icons.runway
         },
         {
-            id: 43,
+            id: 41,
             name: "Pika Labs",
             developer: "Pika Labs",
             category: "image",
@@ -364,7 +610,7 @@ const modelsData = {
             icon: icons.pikalabs
         },
         {
-            id: 44,
+            id: 42,
             name: "OpenAI Sora",
             developer: "OpenAI",
             category: "image",
@@ -376,7 +622,7 @@ const modelsData = {
             icon: icons.gpt
         },
         {
-            id: 45,
+            id: 43,
             name: "Nano Banana",
             developer: "Google",
             category: "image",
@@ -388,7 +634,7 @@ const modelsData = {
             icon: icons.nanobanana
         },
         {
-            id: 46,
+            id: 44,
             name: "Google Veo",
             developer: "Google",
             category: "image",
@@ -400,7 +646,7 @@ const modelsData = {
             icon: icons.gemini
         },
         {
-            id: 46,
+            id: 45,
             name: "Synthesia",
             developer: "Synthesia",
             category: "image",
@@ -412,7 +658,7 @@ const modelsData = {
             icon: icons.synthesia
         },
         {
-            id: 47,
+            id: 46,
             name: "HeyGen",
             developer: "HeyGen",
             category: "image",
@@ -424,7 +670,7 @@ const modelsData = {
             icon: icons.heygen
         },
         {
-            id: 48,
+            id: 47,
             name: "Kaiber AI",
             developer: "Kaiber",
             category: "image",
@@ -436,7 +682,7 @@ const modelsData = {
             icon: icons.kaiber
         },
         {
-            id: 49,
+            id: 48,
             name: "Luma Dream Machine",
             developer: "Luma AI",
             category: "image",
