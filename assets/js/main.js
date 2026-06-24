@@ -25,14 +25,48 @@ function setupSmoothLinks() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Remove body animation after it completes to prevent it from acting as a containing block for position: fixed elements
+    document.body.addEventListener('animationend', (e) => {
+        if (e.animationName === 'pageEnter') {
+            document.body.style.animation = 'none';
+        }
+    });
+
     renderCategories();
     renderTrending();
     renderRecentlyAdded();
     adjustCarouselCardWidths();   // set exact 3-per-row sizing
     setupCarouselArrows();
     setupSearch();
+    setupAboutUsModal();
     setupSmoothLinks(); // run after all cards are rendered
 });
+
+function setupAboutUsModal() {
+    const aboutUsBtn = document.getElementById('aboutus-btn');
+    const aboutUsModal = document.getElementById('aboutus-modal');
+    const aboutUsCloseBtn = document.getElementById('aboutus-close-btn');
+
+    if (!aboutUsBtn || !aboutUsModal || !aboutUsCloseBtn) return;
+
+    aboutUsBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        aboutUsModal.style.display = 'flex';
+        // Small delay to allow display: flex to apply before changing opacity
+        setTimeout(() => {
+            aboutUsModal.classList.add('show');
+        }, 10);
+        document.body.style.overflow = 'hidden'; // Prevent scrolling & other interactions under modal
+    });
+
+    aboutUsCloseBtn.addEventListener('click', () => {
+        aboutUsModal.classList.remove('show');
+        setTimeout(() => {
+            aboutUsModal.style.display = 'none';
+        }, 300); // Wait for transition to finish
+        document.body.style.overflow = ''; // Restore scrolling
+    });
+}
 
 // Re-adjust on resize so 3-card layout stays correct at any window size
 window.addEventListener('resize', adjustCarouselCardWidths);
