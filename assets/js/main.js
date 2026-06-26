@@ -46,26 +46,31 @@ function setupAboutUsModal() {
     const aboutUsBtn = document.getElementById('aboutus-btn');
     const aboutUsModal = document.getElementById('aboutus-modal');
     const aboutUsCloseBtn = document.getElementById('aboutus-close-btn');
+    const footerAboutUsLink = document.getElementById('footer-aboutus-link');
 
-    if (!aboutUsBtn || !aboutUsModal || !aboutUsCloseBtn) return;
+    if (!aboutUsModal || !aboutUsCloseBtn) return;
 
-    aboutUsBtn.addEventListener('click', (e) => {
-        e.preventDefault();
+    function openModal(e) {
+        if (e) e.preventDefault();
         aboutUsModal.style.display = 'flex';
         // Small delay to allow display: flex to apply before changing opacity
         setTimeout(() => {
             aboutUsModal.classList.add('show');
         }, 10);
         document.body.style.overflow = 'hidden'; // Prevent scrolling & other interactions under modal
-    });
+    }
 
-    aboutUsCloseBtn.addEventListener('click', () => {
+    function closeModal() {
         aboutUsModal.classList.remove('show');
         setTimeout(() => {
             aboutUsModal.style.display = 'none';
         }, 300); // Wait for transition to finish
         document.body.style.overflow = ''; // Restore scrolling
-    });
+    }
+
+    if (aboutUsBtn) aboutUsBtn.addEventListener('click', openModal);
+    if (footerAboutUsLink) footerAboutUsLink.addEventListener('click', openModal);
+    aboutUsCloseBtn.addEventListener('click', closeModal);
 }
 
 // Re-adjust on resize so 3-card layout stays correct at any window size
@@ -152,7 +157,7 @@ function adjustCarouselCardWidths() {
             (wrapperWidth - GAP * (CARDS_VISIBLE - 1)) / CARDS_VISIBLE
         );
         wrapper.querySelectorAll('.model-card').forEach(card => {
-            card.style.width    = cardWidth + 'px';
+            card.style.width = cardWidth + 'px';
             card.style.minWidth = cardWidth + 'px';
             card.style.maxWidth = cardWidth + 'px';
         });
@@ -184,9 +189,9 @@ function setupSearch() {
     const searchInput = document.getElementById('model-search');
     if (!searchInput) return;
 
-    const searchSection  = document.getElementById('search-results-section');
-    const searchLabel    = document.getElementById('search-results-label');
-    const searchGrid     = document.getElementById('search-results-grid');
+    const searchSection = document.getElementById('search-results-section');
+    const searchLabel = document.getElementById('search-results-label');
+    const searchGrid = document.getElementById('search-results-grid');
 
     const otherSections = [
         document.getElementById('category-section'),
