@@ -4,6 +4,19 @@ function navigateWithTransition(href) {
     setTimeout(() => { window.location.href = href; }, 220);
 }
 
+/* ── Fix bfcache restore freeze (GitHub Pages / back navigation) ── */
+// When the browser restores a page from the Back-Forward Cache, the
+// 'page-exit' class (pointer-events: none) may still be on the body,
+// freezing all interactions. The 'pageshow' event fires on bfcache restore
+// (event.persisted === true), so we clean up the stale state here.
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted || performance.getEntriesByType('navigation')[0]?.type === 'back_forward') {
+        document.body.classList.remove('page-exit');
+        document.body.style.pointerEvents = '';
+        document.body.style.animation = 'none';
+    }
+});
+
 /* ── Resolve asset paths relative to current page depth ── */
 function resolveIconPath(iconPath) {
     // If we're inside a subdirectory (e.g. categories/), prefix with '../'
